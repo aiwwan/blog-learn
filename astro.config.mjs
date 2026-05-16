@@ -8,7 +8,7 @@ import rehypeArticleMedia from './src/content/blog/plugins/rehype-article-media.
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://blog.lienjack.com',
+	site: 'https://blog.909033.xyz',
 	i18n: {
 		defaultLocale: 'zh',
 		locales: ['zh', 'en', 'ja'],

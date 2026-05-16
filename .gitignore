@@ -33,3 +33,6 @@ publish/artifacts/*
 !publish/artifacts/.gitkeep
 publish/runs/*
 !publish/runs/.gitkeep
+
+# claude code
+.claude/
