@@ -1,1 +1,1 @@
-export const SITE_TITLE = 'learn-agent';
+export const SITE_TITLE = 'Learn-AI';

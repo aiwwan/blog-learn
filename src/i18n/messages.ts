@@ -94,12 +94,12 @@ export type LocaleMessages = {
 const messages: Record<Locale, LocaleMessages> = {
 	zh: {
 		site: {
-			title: 'Learn- Agent',
+			title: 'Learn-AI',
 			description: '记录 AI 学习、Agent 实践与工作流方法论的中文笔记站。',
 			tagline: 'AI 学习 / Agent 实践 / 工作流笔记',
 		},
 		meta: {
-			homeTitle: 'learn-agent',
+			homeTitle: 'Learn-AI',
 			aboutTitle: '关于这个站点',
 			aboutDescription: '写下 AI 学习、Agent 实践与工作流观察的中文记录。',
 			blogTitle: '文章',
@@ -112,7 +112,7 @@ const messages: Record<Locale, LocaleMessages> = {
 			blog: '文章',
 			about: '关于',
 			rss: 'RSS',
-			githubLabel: '在 GitHub 上查看 learn-agent',
+			githubLabel: '在 GitHub 上查看 Learn-AI',
 			languageSwitcherLabel: '切换语言',
 		},
 		footer: {
@@ -206,12 +206,12 @@ const messages: Record<Locale, LocaleMessages> = {
 	},
 	en: {
 		site: {
-			title: 'learn-agent',
+			title: 'Learn-AI',
 			description: 'A Chinese-first notebook on AI learning, agent practice, and workflow thinking.',
 			tagline: 'AI learning / agent practice / workflow notes',
 		},
 		meta: {
-			homeTitle: 'learn-agent',
+			homeTitle: 'Learn-AI',
 			aboutTitle: 'About',
 			aboutDescription: 'What this site documents, how it is written, and why it exists.',
 			blogTitle: 'Chinese Notes',
@@ -224,7 +224,7 @@ const messages: Record<Locale, LocaleMessages> = {
 			blog: 'Chinese Notes',
 			about: 'About',
 			rss: 'RSS',
-			githubLabel: 'View learn-agent on GitHub',
+			githubLabel: 'View Learn-AI on GitHub',
 			languageSwitcherLabel: 'Switch language',
 		},
 		footer: {
@@ -237,7 +237,7 @@ const messages: Record<Locale, LocaleMessages> = {
 		blog: {
 			eyebrow: 'Archive',
 			title: 'English Notes',
-			lead: 'This archive contains the English-language notes published for learn-agent. It focuses on AI learning, agent practice, and workflow thinking in a reusable long-form format.',
+			lead: 'This archive contains the English-language notes published for Learn-AI. It focuses on AI learning, agent practice, and workflow thinking in a reusable long-form format.',
 			browseByLanguage: 'Browse the archive by language',
 		},
 		article: {
@@ -289,7 +289,7 @@ const messages: Record<Locale, LocaleMessages> = {
 			title: 'About',
 			lead: 'This site documents AI learning, agent practice, and workflow observations in a form that is meant to remain useful later.',
 			intro: [
-				'learn-agent is a Chinese-first notebook for work in progress. It exists to keep experiments, implementation details, and decisions from dissolving into chat logs or one-off scratch documents.',
+				'Learn-AI is a Chinese-first notebook for work in progress. It exists to keep experiments, implementation details, and decisions from dissolving into chat logs or one-off scratch documents.',
 			],
 			sections: [
 				{
@@ -318,12 +318,12 @@ const messages: Record<Locale, LocaleMessages> = {
 	},
 	ja: {
 		site: {
-			title: 'learn-agent',
+			title: 'Learn-AI',
 			description: 'AI 学習、Agent 実践、ワークフロー設計を記録するための日本語入口です。',
 			tagline: 'AI 学習 / Agent 実践 / ワークフローノート',
 		},
 		meta: {
-			homeTitle: 'learn-agent',
+			homeTitle: 'Learn-AI',
 			aboutTitle: 'このサイトについて',
 			aboutDescription: 'この場所が何を扱い、どのような姿勢で書かれているかをまとめた紹介ページです。',
 			blogTitle: '中国語アーカイブ',
@@ -336,7 +336,7 @@ const messages: Record<Locale, LocaleMessages> = {
 			blog: '中国語アーカイブ',
 			about: '紹介',
 			rss: 'RSS',
-			githubLabel: 'GitHub で learn-agent を見る',
+			githubLabel: 'GitHub で Learn-AI を見る',
 			languageSwitcherLabel: '言語切替',
 		},
 		footer: {
@@ -349,7 +349,7 @@ const messages: Record<Locale, LocaleMessages> = {
 		blog: {
 			eyebrow: 'Archive',
 			title: '日本語アーカイブ',
-			lead: 'このアーカイブには learn-agent の日本語記事をまとめています。AI 学習、Agent 実践、ワークフロー設計をあとから再利用できる形で残すための記録です。',
+			lead: 'このアーカイブには Learn-AI の日本語記事をまとめています。AI 学習、Agent 実践、ワークフロー設計をあとから再利用できる形で残すための記録です。',
 			browseByLanguage: '言語別に記事を見る',
 		},
 		article: {

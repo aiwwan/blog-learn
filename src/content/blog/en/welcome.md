@@ -1,5 +1,5 @@
 ---
-title: 'Welcome to learn-agent'
+title: 'Welcome to Learn-AI'
 description: 'The first English entry for the site, and the starting point for the multilingual archive.'
 pubDate: 'May 03 2026'
 heroImage: '../../../assets/blog-placeholder-about.jpg'

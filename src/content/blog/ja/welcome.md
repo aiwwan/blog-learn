@@ -1,5 +1,5 @@
 ---
-title: 'learn-agent へようこそ'
+title: 'Learn-AI へようこそ'
 description: '多言語アーカイブに向けた、日本語側の最初のエントリです。'
 pubDate: 'May 03 2026'
 heroImage: '../../../assets/blog-placeholder-about.jpg'
