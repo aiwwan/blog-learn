@@ -1,0 +1,131 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogGroupListingPage from '../../components/blog/BlogGroupListingPage.astro';
+import VercelAnalytics from '../../components/VercelAnalytics.astro';
+import {
+	getBlogGroupPageData,
+	getBlogSeriesPageData,
+	getStructuredBlogStaticPaths,
+} from '../../components/blog/blog-index';
+import BlogPost from '../../layouts/BlogPost.astro';
+import { DEFAULT_LOCALE } from '../../i18n/config';
+import {
+	getLocalizedPosts,
+	getPostFilePathSegments,
+	getPostSlug,
+	sortPostsChronologically,
+} from '../../content/blog/utils';
+
+const locale = DEFAULT_LOCALE;
+
+export async function getStaticPaths() {
+	const locale = DEFAULT_LOCALE;
+	const posts = await getCollection('blog');
+	const localizedPosts = getLocalizedPosts(posts, locale);
+
+	const articlePaths = localizedPosts.map((post) => ({
+		params: { slug: getPostSlug(post) },
+		props: { kind: 'post' as const, post },
+	}));
+
+	const structuredPaths = (await getStructuredBlogStaticPaths(posts, locale)).map((segments) => ({
+		params: { slug: segments.join('/') },
+		props:
+			segments.length === 1
+				? ({ kind: 'group' as const, slug: segments })
+				: ({ kind: 'series' as const, slug: segments }),
+	}));
+
+	return [...structuredPaths, ...articlePaths];
+}
+
+type PostProps = {
+	kind: 'post';
+	post: CollectionEntry<'blog'>;
+};
+
+type StructuredProps = {
+	kind: 'group' | 'series';
+	slug: string[];
+};
+
+type Props = PostProps | StructuredProps;
+
+const props = Astro.props as Props;
+const allPosts = await getCollection('blog');
+const localePosts = sortPostsChronologically(getLocalizedPosts(allPosts, locale));
+
+let template: 'post' | 'group' | 'series' = 'post';
+let renderedPost: CollectionEntry<'blog'> | null = null;
+let headings: Awaited<ReturnType<typeof render>>['headings'] = [];
+let Content: Awaited<ReturnType<typeof render>>['Content'] | null = null;
+let prevPost: CollectionEntry<'blog'> | null = null;
+let nextPost: CollectionEntry<'blog'> | null = null;
+let backHref = '/blog';
+let group = null;
+let series = null;
+
+if (props.kind === 'post') {
+	template = 'post';
+	renderedPost = props.post;
+	const postSegments = getPostFilePathSegments(renderedPost);
+	const groupSlug = postSegments[1];
+	const seriesSlug = postSegments[2];
+	backHref =
+		groupSlug && seriesSlug
+			? `/blog/${groupSlug}/${seriesSlug}`
+			: groupSlug
+				? `/blog/${groupSlug}`
+				: '/blog';
+	const rendered = await render(renderedPost);
+	Content = rendered.Content;
+	headings = rendered.headings;
+	const currentIndex = localePosts.findIndex((entry) => entry.id === renderedPost?.id);
+	prevPost = currentIndex > 0 ? localePosts[currentIndex - 1] : null;
+	nextPost = currentIndex >= 0 ? localePosts[currentIndex + 1] ?? null : null;
+} else if (props.kind === 'group') {
+	template = 'group';
+	group = await getBlogGroupPageData(allPosts, locale, props.slug[0]);
+	if (!group) {
+		throw new Error(`Unknown blog group: ${props.slug[0]}`);
+	}
+} else {
+	template = 'series';
+	series = await getBlogSeriesPageData(allPosts, locale, props.slug[0], props.slug[1]);
+	if (!series) {
+		throw new Error(`Unknown blog series: ${props.slug.join('/')}`);
+	}
+}
+---
+
+{
+	template === 'post' && renderedPost && Content ? (
+		<BlogPost
+			{...renderedPost.data}
+			locale={locale}
+			prevPost={prevPost}
+			nextPost={nextPost}
+			headings={headings}
+			backHref={backHref}
+		>
+			<Content />
+		</BlogPost>
+	) : template === 'group' && group ? (
+		<BlogGroupListingPage
+			locale={locale}
+			posts={allPosts}
+			title={group.alias ? `${group.title} · ${group.alias}` : group.title}
+			description={group.description}
+			group={group}
+		/>
+	) : template === 'series' && series ? (
+		<BlogGroupListingPage
+			locale={locale}
+			posts={allPosts}
+			title={series.alias ? `${series.title} · ${series.alias}` : series.title}
+			description={series.description}
+			series={series}
+		/>
+	) : null
+}
+<VercelAnalytics />

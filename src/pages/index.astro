@@ -1,0 +1,34 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import HomePage from '../components/home/HomePage';
+import VercelAnalytics from '../components/VercelAnalytics.astro';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { getHtmlLang, getMessages } from '../i18n/messages';
+
+const locale = DEFAULT_LOCALE;
+const messages = getMessages(locale);
+---
+
+<!doctype html>
+<html lang={getHtmlLang(locale)}>
+	<head>
+		<BaseHead
+			title={messages.meta.homeTitle}
+			description={messages.site.description}
+			locale={locale}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="page-shell-wide">
+			<HomePage
+				siteTitle={messages.site.title}
+				copy={messages.home}
+				blogHref="/blog"
+				recommendedHref="/blog/AI/3.ClaudeCode%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"
+			/>
+		</main>
+		<VercelAnalytics />
+	</body>
+</html>
